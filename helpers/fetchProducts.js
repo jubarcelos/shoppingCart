@@ -1,5 +1,9 @@
 const fetchProducts = () => {
-  // seu código aqui aqui tbm
+  const url = `https://api.mercadolibre.com/sites/MLB/search?q=${produtos}`;
+  fetch(url)
+  .then((result) => result.json())
+  .then((data) => console.log(data.value))
+  .catch
 };
 
 if (typeof module !== 'undefined') {
@@ -7,3 +11,5 @@ if (typeof module !== 'undefined') {
     fetchProducts,
   };
 }
+
+fetchProducts('computador');
