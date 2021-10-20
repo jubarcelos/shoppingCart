@@ -1,9 +1,9 @@
-const fetchProducts = () => {
-  const url = `https://api.mercadolibre.com/sites/MLB/search?q=${produtos}`;
-  fetch(url)
-  .then((result) => result.json())
-  .then((data) => console.log(data.value))
-  .catch
+const fetchProducts = (products) => {
+  const url = `https://api.mercadolibre.com/sites/MLB/search?q=${products}`;
+  return fetch(url)
+  .then((response) => response.json())
+  .then((data) => (data.results))
+  .catch ((error) => console.log('temos um erro'));
 };
 
 if (typeof module !== 'undefined') {
@@ -11,5 +11,3 @@ if (typeof module !== 'undefined') {
     fetchProducts,
   };
 }
-
-fetchProducts('computador');
