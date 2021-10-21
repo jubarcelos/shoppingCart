@@ -11,9 +11,11 @@ function createCustomElement(element, className, innerText) {
   e.innerText = innerText;
   return e;
 }
-function cartItemClickListener(event) {
 
+function cartItemClickListener(event) {
+  event.target.remove()
 }
+// vai ser usada para remover do storage tbm.
 
 function createCartItemElement({ sku, name, salePrice }) {
   const itemElements = document.querySelector('.cart__items');
@@ -23,6 +25,7 @@ function createCartItemElement({ sku, name, salePrice }) {
   li.addEventListener('click', cartItemClickListener);
   itemElements.appendChild(li);
 }
+
 async function addItemToCart(sku) {
   const allItens = await fetchItem(sku);
   const { title: name, price: salePrice } = allItens;
