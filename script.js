@@ -11,6 +11,19 @@ function createCustomElement(element, className, innerText) {
   e.innerText = innerText;
   return e;
 }
+function createCartItemElement({ sku, name, salePrice }) {
+  const itemElements = document.querySelector('.cart__items');
+  const li = document.createElement('li');
+  li.className = 'cart__item';
+  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
+  li.addEventListener('click', cartItemClickListener);
+  itemElements.appendChild(li);
+}
+async function addItemToCart(sku) {
+  const allItens = await fetchItem(sku);
+  const { title: name, price: salePrice } = allItens;
+  createCartItemElement({sku, name, salePrice});
+}
 
 function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
   const section = document.createElement('section');
@@ -19,7 +32,11 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
   section.appendChild(createCustomElement('span', 'item__sku', sku));
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
-  section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
+  const addButton = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
+  addButton.addEventListener('click', () => {
+    addItemToCart(sku);
+  });
+  section.appendChild(addButton);
   productSection.appendChild(section);
 }
 
@@ -32,25 +49,9 @@ const allProducts = () => {
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
-
 function cartItemClickListener(event) {
-  addEventListener('click', (event) => {
-    forEach((item) => {
-      item.addEventListener('click', (event) => {
-        event.target.classList.toggle('cart__item');
-      });
-    });
-  });
 }
 
-function createCartItemElement({ sku, name, salePrice }) {
-  const itemElements = document.querySelector('.cart__items');
-  const li = document.createElement('li');
-  li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
-  itemElements.appendChild(li);
-}
 
 window.onload = () => {
   allProducts();
