@@ -1,11 +1,20 @@
 const itemElements = document.querySelector('.cart__items');
 
-
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
   img.className = 'item__image';
   img.src = imageSource;
   return img;
+}
+
+function getAllPrices() {
+  const arrayAllItems = itemElements.childNodes;
+  const itemValues = [];
+  arrayAllItems.forEach((item) => {
+    const itemPrice = item.innerHTML.split('PRICE: $');
+    itemValues.push(parseFloat(itemPrice[1]));
+  });
+  return itemValues;
 }
 
 function createCustomElement(element, className, innerText) {
@@ -15,10 +24,15 @@ function createCustomElement(element, className, innerText) {
   return e;
 }
 
+function setCartPrice() {
+  const totalToPay = document.querySelector('.total-price');
+  totalToPay.innerHTML = getAllPrices().reduce((acc, current) => acc + current, 0);
+}
+setCartPrice();
+
 function cartItemClickListener(event) {
-  setCartPrice()
+  setCartPrice();
   event.target.remove();
-  
 }
 // vai ser usada para remover do storage tbm.
 
@@ -63,10 +77,11 @@ const allProducts = () => {
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
+
 const setSavedCart = () => {
   const memory = getSavedCartItems();
   itemElements.innerHTML = memory;
-}
+};
 // ativa botão de limpar.
 const clearAllCart = document.querySelector('.empty-cart');
 clearAllCart.addEventListener('click', () => {
@@ -75,21 +90,6 @@ clearAllCart.addEventListener('click', () => {
   setCartPrice();
   saveCartItems(itemElements.innerHTML);
 });
-
-function getAllPrices() {
-  const arrayAllItems = itemElements.childNodes;
-  const itemValues = [];
-  arrayAllItems.forEach((item) => {
-    const itemPrice = item.innerHTML.split('PRICE: $');
-    itemValues.push(parseFloat(itemPrice[1]));
-  });
-  return itemValues;
-}
-function setCartPrice() {
-  const totalToPay = document.querySelector('.total-price');
-  totalToPay.innerHTML = getAllPrices().reduce((acc, current) => acc + current, 0);
-}
-setCartPrice()
 
 itemElements.addEventListener('click', cartItemClickListener);
 
