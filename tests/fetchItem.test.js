@@ -17,7 +17,7 @@ describe('2 - Teste a função fecthItem', () => {
     await fetchItem('MLB1615760527');
     expect(fetch).toHaveBeenCalledWith('https://api.mercadolibre.com/items/MLB1615760527')
   });
-  it ('Se a chamada da função fetchItem("computador") retorna uma estrutura de dados igual ao objeto computadorSearch', async () => {
+  it ('Se a chamada da função fetchItem("MLB1615760527") retorna uma estrutura de dados igual ao objeto item', async () => {
     const result = await fetchItem('MLB1615760527');
     expect(result).toEqual(item);
   });
