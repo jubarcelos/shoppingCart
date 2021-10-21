@@ -21,7 +21,6 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
   productSection.appendChild(section);
-  return section;
 }
 
 const allProducts = () => {
