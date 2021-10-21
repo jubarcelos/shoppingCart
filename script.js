@@ -13,7 +13,7 @@ function createCustomElement(element, className, innerText) {
 }
 
 function cartItemClickListener(event) {
-  event.target.remove()
+  event.target.remove();
 }
 // vai ser usada para remover do storage tbm.
 
