@@ -1,5 +1,6 @@
 const itemElements = document.querySelector('.cart__items');
 
+
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -15,8 +16,9 @@ function createCustomElement(element, className, innerText) {
 }
 
 function cartItemClickListener(event) {
+  setCartPrice()
   event.target.remove();
-  saveCartItems(itemElements.innerHTML);
+  
 }
 // vai ser usada para remover do storage tbm.
 
@@ -33,6 +35,7 @@ async function addItemToCart(sku) {
   const { title: name, price: salePrice, thumbnail: image } = allItens;
   createCartItemElement({ sku, image, name, salePrice });
   saveCartItems(itemElements.innerHTML);
+  setCartPrice();
 }
 
 function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
@@ -43,12 +46,12 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   const addButton = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
+  section.appendChild(addButton);
+  productSection.appendChild(section);
   addButton.addEventListener('click', () => {
     saveCartItems(itemElements.innerHTML);
     addItemToCart(sku);
   });
-  section.appendChild(addButton);
-  productSection.appendChild(section);
 }
 
 const allProducts = () => {
@@ -65,16 +68,33 @@ const setSavedCart = () => {
   itemElements.innerHTML = memory;
 }
 // ativa botão de limpar.
-function cleanCart() {
-  const clearAllCart = document.querySelector('.empty-cart');
+const clearAllCart = document.querySelector('.empty-cart');
+clearAllCart.addEventListener('click', () => {
   const allItems = document.querySelector('.cart__items');
-  clearAllCart.addEventListener('click', () => {
-    allItems.innerHTML = '';
+  allItems.innerHTML = '';
+  setCartPrice();
+  saveCartItems(itemElements.innerHTML);
+});
+
+function getAllPrices() {
+  const arrayAllItems = itemElements.childNodes;
+  const itemValues = [];
+  arrayAllItems.forEach((item) => {
+    const itemPrice = item.innerHTML.split('PRICE: $');
+    itemValues.push(parseFloat(itemPrice[1]));
   });
+  return itemValues;
 }
-cleanCart() 
+function setCartPrice() {
+  const totalToPay = document.querySelector('.total-price');
+  totalToPay.innerHTML = getAllPrices().reduce((acc, current) => acc + current, 0);
+}
+setCartPrice()
+
+itemElements.addEventListener('click', cartItemClickListener);
 
 window.onload = () => {
   allProducts();
   setSavedCart();
+  setCartPrice();
 };
