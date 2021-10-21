@@ -11,6 +11,10 @@ function createCustomElement(element, className, innerText) {
   e.innerText = innerText;
   return e;
 }
+function cartItemClickListener(event) {
+
+}
+
 function createCartItemElement({ sku, name, salePrice }) {
   const itemElements = document.querySelector('.cart__items');
   const li = document.createElement('li');
@@ -23,10 +27,6 @@ async function addItemToCart(sku) {
   const allItens = await fetchItem(sku);
   const { title: name, price: salePrice } = allItens;
   createCartItemElement({ sku, name, salePrice });
-}
-
-function cartItemClickListener(event) {
-
 }
 
 function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
