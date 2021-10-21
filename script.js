@@ -26,7 +26,7 @@ function createProductItemElement({ id:sku, title:name, thumbnail:image }) {
 
 const allProducts = () => {
   fetchProducts('computador').then( (response) => {
-    response.forEach((products) => createProductItemElement(products));
+    response.result.forEach((products) => createProductItemElement(products));
   })
 }
 
