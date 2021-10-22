@@ -1,3 +1,11 @@
+const insertLoading = document.querySelector('.loading');
+
+window.onload = async () => {
+  allProducts();
+  setSavedCart();
+  setCartPrice();
+};
+
 const itemElements = document.querySelector('.cart__items');
 
 function createProductImageElement(imageSource) {
@@ -71,6 +79,7 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
 const allProducts = () => {
   fetchProducts('computador').then((response) => {
     response.results.forEach((products) => createProductItemElement(products));
+    insertLoading.remove();
   });
 };
 
@@ -93,8 +102,7 @@ clearAllCart.addEventListener('click', () => {
 
 itemElements.addEventListener('click', cartItemClickListener);
 
-window.onload = () => {
-  allProducts();
-  setSavedCart();
-  setCartPrice();
-};
+function removeLoadingPage () {
+  document.querySelector('.loading').innerText = 'carregando...';
+}
+removeLoadingPage ()
