@@ -1,11 +1,9 @@
+// para concluir a questão 1 o Josué, Lucas, Brunão, Leandro e mais algumas pessoas que estavam na memorável sala 3 me ajudaram muito a parar de patinar, me ajudaram também nos testes da questão 4.
+// para concluir os testes da questão 1 o prof Bernardo apareceu também e deu uma mini aula noturna para os alunos corujões.
+// para a questão 7 o Lucas me deu um toque de posicionamento do remove que resolveu meu problema.
+// para a 4 o Guilherme Augusto me deu uns toques bem legais e ele ficou acompanhando minha lógica para desenvolver a questão 5, fizemos bem diferentes, mas ele tava ali junto, então toma crédito!
+
 const insertLoading = document.querySelector('.loading');
-
-window.onload = async () => {
-  allProducts();
-  setSavedCart();
-  setCartPrice();
-};
-
 const itemElements = document.querySelector('.cart__items');
 
 function createProductImageElement(imageSource) {
@@ -42,7 +40,8 @@ function cartItemClickListener(event) {
   setCartPrice();
   event.target.remove();
 }
-// vai ser usada para remover do storage tbm.
+
+itemElements.addEventListener('click', cartItemClickListener);
 
 function createCartItemElement({ sku, name, salePrice }) {
   const li = document.createElement('li');
@@ -100,9 +99,8 @@ clearAllCart.addEventListener('click', () => {
   saveCartItems(itemElements.innerHTML);
 });
 
-itemElements.addEventListener('click', cartItemClickListener);
-
-function removeLoadingPage () {
-  document.querySelector('.loading').innerText = 'carregando...';
-}
-removeLoadingPage ()
+window.onload = async () => {
+  allProducts();
+  setSavedCart();
+  setCartPrice();
+};
