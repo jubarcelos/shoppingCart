@@ -12,17 +12,32 @@
     <script src="./helpers/saveCartItems.js" defer></script>
     <script src="./helpers/getSavedCartItems.js" defer></script>
   </head>
+  <header class="header">
+    <section class="start-header">
+      <img
+        id="logo"
+        src="https://4.bp.blogspot.com/-twPV-q7aS2Q/WURbLhOOeeI/AAAAAAAAGgo/_OIlR_lXafUVYtYKjYpHfePlm2vhiAhBACLcBGAs/s1600/8ebb78c7a99b3a1a8a2c0ff1caa45ba8%2B-%2Btwitter%2B-%2B1.jpeg"
+        alt="Logo de tudo um pouco"
+        width="100px"
+      />
+      <h2>Pode procurar, aqui tem de tudo!</h2>
+    </section>
+    <section class="header-search">
+      <input type="text" id="search" placeholder="O que você procura?" />
+      <button class="search-button" type="button">Buscar</button>
+    </section>
+  </header>
   <body>
     <section class="container">
       <section class="items"></section>
       <section class="cart">
         <section class="clear">
-        <span class="loading">carregando...</span>
-      </section>
+          <span class="loading">carregando...</span>
+        </section>
         <span class="cart__title">Carrinho de compras</span>
-        <button class="empty-cart">Esvaziar carrinho</button>
         <ol class="cart__items"></ol>
         <ul class="total-price"></ul>
+        <button class="empty-cart">Esvaziar carrinho</button>
       </section>
     </section>
   </body>

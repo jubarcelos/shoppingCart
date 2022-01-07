@@ -1,7 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;700&display=swap");
+
+html {
+  font-family: "Spartan", sans-serif;
+}
+
+header {
+  background-color: rgb(168, 231, 168);
+  padding: 1%;
+  margin-bottom: 1%;
+  display: flex;
+}
+
+.start-header {
+  display: flex;
+  width: 50%;
+}
+
+header h2 {
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  flex-basis: 90%;
+  margin-left: 1%;
+}
+
+#logo {
+  display: flex;
+  border-radius: 10%;
+  margin-left: 2%;
+  flex-basis: 20%;
+}
+
+.header-search {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 50%;
+  margin-top: 1%;
+  padding: 2.5%;
+}
+
+.search-button {
+  color: rgb(45, 102, 83);
+  display: flex;
+  background-color: rgb(255, 250, 250);
+  flex-basis: 20%;
+  padding: 0.5%;
+  font-size: 1em;
+  margin-left: 1%;
+  align-items: center;
+  justify-content: center;
+  border-color: aquamarine;
+}
+
+#search {
+  display: flex;
+  flex-basis: 40%;
+  padding: 0.3%;
+  font-size: 0.8em;
+  margin-left: 1%;
+  text-align: center;
+  border-color: aquamarine;
+  outline: none;
+  user-select: none;
+  height: auto;
+}
+
 .container {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  flex-basis: 70%;
 }
 
 .items {
@@ -9,17 +78,30 @@
   flex-basis: 70%;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 2%;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  overflow: auto;
+  max-height: 50em;
+  margin: 0;
+  padding: 0;
 }
 
 .item {
-  border: 2px solid blue;
+  border: 4px solid rgb(168, 231, 168);
   border-radius: 5px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: auto;
-  margin: 5px;
-  width: 200px;
+  margin: 2%;
+  width: 25%;
+  margin-right: 0.5%;
+  box-shadow: 0 0 1.2em grey;
 }
 
 .item .item__sku {
@@ -28,30 +110,161 @@
 
 .item .item__title {
   flex-grow: 1;
-  padding: 10px;
+  padding: 1%;
   text-align: center;
+  font-size: 0.7em;
 }
 
 .item .item__image {
-  width: 100%;
+  width: 70%;
+  padding: 0.3%;
+  margin-left: 15%;
 }
 
 .item .item__add {
-  background-color: green;
+  background-color: rgb(168, 231, 168);
   border: 0;
   cursor: pointer;
   margin: 0;
-  padding: 5px;
+  padding: 0;
+  font-size: 1.1em;
 }
 
 .cart {
   display: flex;
-  flex-basis: 30%;
+  flex-basis: 32%;
   flex-flow: column wrap;
+  border: 4px solid rgb(168, 231, 168);
+  margin-right: 1%;
+  background-color: rgb(230, 246, 230);
+  height: max-content;
+  margin-top: 1.2%;
+  margin-left: 2%;
+  box-shadow: 0 0 1.2em grey;
+}
+
+.image-price {
+  display: flex;
+  margin-left: 2%;
+}
+
+.image-price img {
+  height: 10%;
+  border-radius: 100%;
+}
+
+.textCart {
+  margin-left: 2%;
+  margin-right: 2%;
+  font-size: 0.7em;
+  padding: 0.5%;
 }
 
 .cart .cart__title {
   flex-basis: 1;
-  font-size: 16pt;
+  font-size: 1em;
+  font-style: 600px;
   text-align: center;
+  margin-bottom: 3%;
+  width: 95%;
+  padding: 3%;
+}
+
+.cart__items {
+  overflow: auto;
+  max-height: 30em;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 3%;
+  justify-content: flex-start;
+  padding: 0.1%;
+  width: 100%;
+}
+
+.cart__items .li {
+  justify-content: flex-start;
+  margin-bottom: 3%;
+  font-size:0.8em;
+}
+
+.cart__items .item__image {
+  display: block;
+  width: 5%;
+}
+
+.total-price {
+  font-size: 0.8em;
+  font-weight: 300px;
+}
+
+.empty-cart {
+  background-color: rgb(168, 231, 168);
+  font-size: 1em;
+  font-weight: 300px;
+  padding: 1%;
+  width: 50%;
+  text-align: center;
+  margin-left: 25%;
+  border-radius: 5px;
+  border-color: rgb(168, 231, 168);
+  margin-bottom: 5%;
+}
+
+@media screen and (max-width: 768px) {
+  .start-header {
+    width: 100%;
+    margin-left: 5%;
+  }
+
+  .header-search {
+    width: 70%;
+  }
+
+  .cart {
+    flex-basis: 40%;
+    width: 100%;
+    font-size: 0.5em;
+  }
+
+  .item {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  header {
+    display: block;
+    width: 100%;
+  }
+  .start-header {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .textCart {
+    margin-right: 2%;
+  }
+  
+  .header-search {
+    width: 90%;
+  }
+
+  .cart {
+    width: 45%;
+    font-size: 0.5em;
+    justify-content: flex-start;
+  }
+
+  .items{
+    width: 35%;
+  }
+
+  .item {
+    width: 80%;
+  }
+
+  .image-price img  {
+    display: none;
+  }
+
 }
