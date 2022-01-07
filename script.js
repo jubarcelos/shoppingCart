@@ -95,7 +95,6 @@ function createProductItemElement({ id: sku, price: salePrice, title: name, thum
     addItemToCart(sku);
   });
 }
-//
 
 const searchProducts = document.querySelector('.search-button');
 const search = document.querySelector('#search');
